@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="so_approval_form" model="ir.ui.view">
+        <field name="name">sale_order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_quotation_send']" position="after">
+                <button name="action_quotation_send" type="object"
+                        class="oe_button oe_form_button oe_highlight new_class"
+                        string="Approve"
+                        groups="so_approval.group_sale_manager"
+                attrs="{'invisible': [('state','!=','to_approve')]}"/>
+                <button name="action_disapprove" type="object"
+                        class="oe_button oe_form_button oe_highlight new_class"
+                        string="Disapprove"
+                        groups="so_approval.group_sale_manager"
+                        attrs="{'invisible': [('state','!=','to_approve')]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
